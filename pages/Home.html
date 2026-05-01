@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eceef0",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c4c5d5",
+                        "on-secondary-fixed-variant": "#3f4755",
+                        "on-primary-fixed-variant": "#153ea3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002068",
+                        "on-secondary-container": "#5d6573",
+                        "on-surface-variant": "#444653",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed": "#002108",
+                        "inverse-primary": "#b5c4ff",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#dce1ff",
+                        "secondary-fixed-dim": "#bfc7d7",
+                        "on-primary-container": "#8aa4ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#69ff87",
+                        "secondary": "#575f6d",
+                        "on-tertiary-fixed-variant": "#00531e",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed": "#00164e",
+                        "surface-dim": "#d8dadc",
+                        "inverse-surface": "#2d3133",
+                        "primary-container": "#003399",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#3ce36a",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "outline": "#747684",
+                        "on-tertiary-container": "#00c250",
+                        "secondary-fixed": "#dbe3f4",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface": "#f7f9fb",
+                        "secondary-container": "#dbe3f4",
+                        "error": "#ba1a1a",
+                        "tertiary": "#002f0e",
+                        "on-surface": "#191c1e",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed": "#141c28",
+                        "surface-tint": "#3557bc",
+                        "tertiary-container": "#004819"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base-unit": "4px",
+                        "lg": "32px",
+                        "sm": "16px",
+                        "gutter": "20px",
+                        "container-margin": "24px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "table-header": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-base": ["Inter"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "table-header": ["15px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .soft-deep-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 32, 104, 0.06), 0 8px 10px -6px rgba(0, 32, 104, 0.04);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-950 font-body-base text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300">
+    <!-- TopAppBar -->
+    <header
+        class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md font-['Manrope'] antialiased border-b border-slate-100 dark:border-slate-800 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center h-16 px-6 w-full">
+        <div class="flex items-center gap-4">
+            <h1 class="text-2xl font-black tracking-tight text-blue-900 dark:text-blue-300">Intelligo</h1>
+            <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2 hidden sm:block"></div>
+            <span class="font-headline-md text-headline-md text-primary dark:text-blue-200 hidden sm:block">نظام إدارة
+                انتليجو</span>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-4 ml-4 sm:ml-8">
+            <button id="theme-toggle"
+                class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400">
+                <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+                <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+            </button>
+            <img src="../assets/images/in.png" alt="Intelligo Logo"
+                class="h-16 w-auto object-contain drop-shadow-sm scale-110" />
+        </div>
+    </header>
+    <!-- Main Canvas -->
+    <main class="p-4 md:p-6 lg:p-lg">
+        <div class="max-w-7xl mx-auto">
+            <!-- Hero Welcome Section -->
+            <section class="mb-xl">
+                <h2 class="font-display-lg text-display-lg text-primary dark:text-blue-300 mb-xs">مرحباً بك مجدداً</h2>
+                <p class="text-secondary dark:text-slate-400 text-body-base">اختر المركز التعليمي الذي ترغب في إدارته
+                    اليوم من القائمة أدناه.</p>
+            </section>
+            <!-- Centers Grid (Bento Style) -->
+            <div id="centers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+            </div>
+            <!-- Dashboard Stats Preview -->
+            <!-- Graphic Illustration Section -->
+        </div>
+        <!-- Logout Button -->
+        <div class="mt-xl flex justify-center pb-xl">
+            <a href="../index.html"
+                class="flex items-center gap-2 px-8 py-3 bg-red-50 text-red-600 rounded-full hover:bg-red-600 hover:text-white border border-red-100 transition-all duration-300 font-label-bold text-label-bold shadow-sm">
+                <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </main>
+    <script type="module">
+        import { database, ref, set, get, child, remove, onValue, auth, onAuthStateChanged, signOut } from '../assets/js/firebase-config.js';
+
+        // Handle Logout
+        const logoutBtn = document.querySelector('[data-icon="logout"]').closest('a');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                signOut(auth).then(() => {
+                    window.location.href = '../index.html';
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const centersGrid = document.getElementById('centers-grid');
+
+            // No default centers, start clean
+            let centersList = [];
+
+            const centersRef = ref(database, 'intelligo_centers');
+
+            onAuthStateChanged(auth, (user) => {
+                if (!user) {
+                    window.location.href = '../index.html';
+                    return;
+                }
+
+                onValue(centersRef, (snapshot) => {
+                    centersList = snapshot.val() || [];
+                    renderCenters();
+                });
+                function fileToBase64(file) {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = error => reject(error);
+                    });
+                }
+
+                function renderCenters() {
+                    centersGrid.innerHTML = '';
+
+                    centersList.forEach((center, index) => {
+                        const a = document.createElement('a');
+                        a.href = `management.html?center=${encodeURIComponent(center.name)}`;
+                        a.className = "block group bg-white dark:bg-slate-900 border border-transparent dark:border-slate-800 rounded-xl p-lg soft-deep-shadow hover:translate-y-[-4px] transition-all duration-300 cursor-pointer relative overflow-hidden";
+
+                        a.innerHTML = `
+                <div class="absolute top-0 right-0 w-32 h-32 ${center.bgColor} rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
+                
+                <div class="absolute top-3 left-3 z-20 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-full transition-colors btn-edit-center" data-index="${index}">
+                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                    </button>
+                    <button class="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors btn-delete-center" data-index="${index}">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                </div>
+
+                <div class="relative z-10 mt-2">
+                    <div class="w-14 h-14 ${center.image ? 'bg-white shadow-sm' : center.iconBg} rounded-xl flex items-center justify-center mb-md ${center.iconColor} dark:text-white overflow-hidden">
+                        ${center.image ? `<img src="${center.image}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined text-3xl">${center.icon || 'domain'}</span>`}
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary dark:text-blue-100 mb-xs">${center.name}</h3>
+                    <p class="text-body-sm text-secondary dark:text-slate-400 mb-md"><br/></p>
+                    <div class="flex items-center gap-2 text-primary dark:text-blue-400 font-label-bold">
+                        <span class="">دخول لوحة التحكم</span>
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    </div>
+                </div>
+            `;
+
+                        a.addEventListener('click', async (e) => {
+                            const editBtn = e.target.closest('.btn-edit-center');
+                            const deleteBtn = e.target.closest('.btn-delete-center');
+
+                            if (editBtn) {
+                                e.preventDefault();
+                                const idx = editBtn.getAttribute('data-index');
+                                const oldName = centersList[idx].name;
+
+                                const { value: formValues } = await Swal.fire({
+                                    title: 'تعديل بيانات المركز',
+                                    html:
+                                        `<input id="swal-input-name" class="swal2-input" value="${oldName}" placeholder="أدخل اسم المركز...">` +
+                                        '<div class="mt-4 text-right"><label class="text-sm font-bold text-slate-700 block mb-2">تحديث صورة/شعار المركز (اختياري):</label>' +
+                                        '<input type="file" id="swal-input-image" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" accept="image/*"></div>',
+                                    focusConfirm: false,
+                                    showCancelButton: true,
+                                    confirmButtonText: 'حفظ',
+                                    cancelButtonText: 'إلغاء',
+                                    confirmButtonColor: '#002068',
+                                    preConfirm: async () => {
+                                        const name = document.getElementById('swal-input-name').value;
+                                        const fileInput = document.getElementById('swal-input-image');
+                                        const file = fileInput.files.length > 0 ? fileInput.files[0] : null;
+
+                                        if (!name || !name.trim()) {
+                                            Swal.showValidationMessage('الرجاء إدخال اسم المركز!');
+                                            return false;
+                                        }
+
+                                        let base64Image = null;
+                                        if (file) {
+                                            try {
+                                                base64Image = await fileToBase64(file);
+                                            } catch (e) {
+                                                Swal.showValidationMessage('فشل في قراءة الصورة');
+                                                return false;
+                                            }
+                                        }
+                                        return { name: name.trim(), image: base64Image };
+                                    }
+                                });
+
+                                if (formValues) {
+                                    const trimmedNewName = formValues.name;
+
+                                    if (trimmedNewName !== oldName && centersList.find(c => c.name === trimmedNewName)) {
+                                        Swal.fire('خطأ', 'هذا المركز موجود بالفعل!', 'error');
+                                        return;
+                                    }
+
+                                    centersList[idx].name = trimmedNewName;
+                                    if (formValues.image) {
+                                        centersList[idx].image = formValues.image;
+                                    }
+
+                                    set(centersRef, centersList);
+
+                                    if (trimmedNewName !== oldName) {
+                                        const dbRef = ref(database);
+                                        get(child(dbRef, `intelligo_data/${oldName}`)).then((snapshot) => {
+                                            if (snapshot.exists()) {
+                                                set(ref(database, `intelligo_data/${trimmedNewName}`), snapshot.val());
+                                                remove(ref(database, `intelligo_data/${oldName}`));
+                                            }
+                                        });
+                                    }
+
+                                    renderCenters();
+                                    Swal.fire({ title: 'تم بنجاح!', text: 'تم تحديث بيانات المركز.', icon: 'success', confirmButtonColor: '#002068' });
+                                }
+                            } else if (deleteBtn) {
+                                e.preventDefault();
+                                const idx = deleteBtn.getAttribute('data-index');
+                                const centerNameToDelete = centersList[idx].name;
+
+                                const result = await Swal.fire({
+                                    title: 'تأكيد الحذف',
+                                    html: `سيتم حذف مركز "<b>${centerNameToDelete}</b>" بشكل نهائي.<br><br>لتأكيد الحذف، يرجى كتابة:<br><b class="text-error">نعم متأكد</b>`,
+                                    icon: 'warning',
+                                    input: 'text',
+                                    inputPlaceholder: 'اكتب نعم متأكد...',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'حذف المركز',
+                                    cancelButtonText: 'إلغاء',
+                                    inputValidator: (value) => {
+                                        if (!value || value.trim() !== 'نعم متأكد') {
+                                            return 'يجب كتابة "نعم متأكد" لتأكيد الحذف!';
+                                        }
+                                    }
+                                });
+
+                                if (result.isConfirmed) {
+                                    // Remove from centers list
+                                    centersList.splice(idx, 1);
+                                    set(centersRef, centersList);
+
+                                    // Remove from intelligo_data
+                                    remove(ref(database, `intelligo_data/${centerNameToDelete}`));
+
+                                    renderCenters();
+                                    Swal.fire({ title: 'تم الحذف!', text: 'تم مسح المركز بنجاح.', icon: 'success', confirmButtonColor: '#002068' });
+                                }
+                            }
+                        });
+
+                        centersGrid.appendChild(a);
+                    });
+
+                    // Add the "Add New Center" button at the end
+                    const addBtn = document.createElement('div');
+                    addBtn.className = "group border-2 border-dashed border-primary/20 dark:border-slate-700 rounded-xl p-lg flex flex-col items-center justify-center text-center hover:bg-primary-fixed/30 dark:hover:bg-slate-800 hover:border-primary transition-all duration-300 cursor-pointer min-h-[240px]";
+                    addBtn.innerHTML = `
+            <div class="w-16 h-16 bg-white dark:bg-slate-800 soft-deep-shadow rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-primary dark:text-blue-400 text-3xl">add</span>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-primary dark:text-blue-300">إضافة مركز جديد</h3>
+            <p class="text-body-sm text-secondary dark:text-slate-400 mt-xs px-lg">أنشئ مساحة عمل جديدة مخصصة لفرع أو مركز تعليمي جديد</p>
+        `;
+                    addBtn.addEventListener('click', async () => {
+                        const { value: formValues } = await Swal.fire({
+                            title: 'إضافة مركز جديد',
+                            html:
+                                '<input id="swal-input-name" class="swal2-input" placeholder="أدخل اسم المركز أو الفرع الجديد...">' +
+                                '<div class="mt-4 text-right"><label class="text-sm font-bold text-slate-700 block mb-2">صورة/شعار المركز (اختياري):</label>' +
+                                '<input type="file" id="swal-input-image" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" accept="image/*"></div>',
+                            focusConfirm: false,
+                            showCancelButton: true,
+                            confirmButtonText: 'إضافة',
+                            cancelButtonText: 'إلغاء',
+                            confirmButtonColor: '#002068',
+                            preConfirm: async () => {
+                                const name = document.getElementById('swal-input-name').value;
+                                const fileInput = document.getElementById('swal-input-image');
+                                const file = fileInput.files.length > 0 ? fileInput.files[0] : null;
+
+                                if (!name || !name.trim()) {
+                                    Swal.showValidationMessage('الرجاء إدخال اسم المركز!');
+                                    return false;
+                                }
+
+                                let base64Image = null;
+                                if (file) {
+                                    try {
+                                        base64Image = await fileToBase64(file);
+                                    } catch (e) {
+                                        Swal.showValidationMessage('فشل في قراءة الصورة');
+                                        return false;
+                                    }
+                                }
+                                return { name: name.trim(), image: base64Image };
+                            }
+                        });
+
+                        if (formValues) {
+                            const centerName = formValues.name;
+                            if (centersList.find(c => c.name === centerName)) {
+                                Swal.fire('خطأ', 'هذا المركز موجود بالفعل!', 'error');
+                                return;
+                            }
+
+                            const icons = ['store', 'business', 'domain', 'storefront', 'apartment'];
+                            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+
+                            centersList.push({
+                                name: centerName,
+                                image: formValues.image,
+                                icon: randomIcon,
+                                bgColor: 'bg-primary/5',
+                                iconBg: 'bg-primary-fixed',
+                                iconColor: 'text-primary'
+                            });
+
+                            set(centersRef, centersList);
+                            renderCenters();
+                            Swal.fire({ title: 'تم بنجاح!', text: 'تمت إضافة المركز الجديد.', icon: 'success', confirmButtonColor: '#002068' });
+                        }
+                    });
+                    centersGrid.appendChild(addBtn);
+                }
+                renderCenters();
+            }); // End of onAuthStateChanged
+        }); // End of DOMContentLoaded
+    </script>
+    <script type="module" src="../assets/js/main.js?v=6"></script>
+</body>
+
+</html>

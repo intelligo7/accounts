@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eceef0",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c4c5d5",
+                        "on-secondary-fixed-variant": "#3f4755",
+                        "on-primary-fixed-variant": "#153ea3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002068",
+                        "on-secondary-container": "#5d6573",
+                        "on-surface-variant": "#444653",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed": "#002108",
+                        "inverse-primary": "#b5c4ff",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#dce1ff",
+                        "secondary-fixed-dim": "#bfc7d7",
+                        "on-primary-container": "#8aa4ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#69ff87",
+                        "secondary": "#575f6d",
+                        "on-tertiary-fixed-variant": "#00531e",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed": "#00164e",
+                        "surface-dim": "#d8dadc",
+                        "inverse-surface": "#2d3133",
+                        "primary-container": "#003399",
+                        "surface-container-high": "#e6e8ea",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#3ce36a",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "outline": "#747684",
+                        "on-tertiary-container": "#00c250",
+                        "secondary-fixed": "#dbe3f4",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface": "#f7f9fb",
+                        "secondary-container": "#dbe3f4",
+                        "error": "#ba1a1a",
+                        "tertiary": "#002f0e",
+                        "on-surface": "#191c1e",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-secondary-fixed": "#141c28",
+                        "surface-tint": "#3557bc",
+                        "tertiary-container": "#004819"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base-unit": "4px",
+                        "lg": "32px",
+                        "sm": "16px",
+                        "gutter": "20px",
+                        "container-margin": "24px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "table-header": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-base": ["Inter"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "table-header": ["15px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-md font-['Manrope'] transition-colors duration-300 relative">
+    <button id="theme-toggle"
+        class="absolute top-4 left-4 p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400">
+        <span class="material-symbols-outlined dark:hidden">dark_mode</span>
+        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+    </button>
+    <main class="w-full max-w-md">
+        <!-- Login Card -->
+        <div
+            class="bg-white dark:bg-slate-900 rounded-lg shadow-xl border border-slate-100 dark:border-slate-800 p-lg flex flex-col items-center">
+            <!-- Branding Header -->
+            <div class="mb-xl text-center">
+                <img src="assets/images/in.png" alt="Intelligo Logo" class="w-32 h-auto mx-auto mb-4">
+                <p class="font-headline-md text-headline-md text-secondary dark:text-slate-400 tracking-tight">نظـام إدارة حسـابات إنتليجوو</p>
+                  
+            </div>
+            <!-- Form -->
+            <form id="login-form" class="w-full space-y-md">
+                <!-- Username Field -->
+                <div class="space-y-xs">
+                    <label class="font-label-bold text-label-bold text-on-surface-variant dark:text-slate-300 px-1"
+                        for="username">
+                        اسم المستخدم (أو البريد الإلكتروني)
+                    </label>
+                    <div class="relative">
+                        <input
+                            class="w-full h-14 pl-4 rounded-full border-1.5 border-outline-variant dark:border-slate-700 bg-surface-bright dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200 outline-none font-body-base text-body-base text-on-surface dark:text-white px-6"
+                            id="username" name="username" placeholder="أدخل اسم المستخدم" type="text" />
+                    </div>
+                </div>
+                <!-- Password Field -->
+                <div class="space-y-xs">
+                    <label class="font-label-bold text-label-bold text-on-surface-variant dark:text-slate-300 px-1"
+                        for="password">
+                        كلمة المرور
+                    </label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline dark:text-slate-400"
+                            data-icon="lock">lock</span>
+                        <input
+                            class="w-full h-14 pr-12 pl-12 rounded-full border-1.5 border-outline-variant dark:border-slate-700 bg-surface-bright dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200 outline-none font-body-base text-body-base text-on-surface dark:text-white"
+                            id="password" name="password" placeholder="••••••••" type="password" />
+                        <button id="toggle-password-btn"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
+                            type="button">
+                            <span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Login Button -->
+                <button
+                    class="w-full h-14 bg-primary dark:bg-blue-600 text-on-primary dark:text-white rounded-full font-headline-md text-headline-md flex items-center justify-center gap-sm hover:bg-primary-container dark:hover:bg-blue-700 hover:shadow-xl transition-all duration-200 mt-lg"
+                    type="submit">
+                    <span class="">تسجيل الدخول</span>
+                    <span class="material-symbols-outlined" data-icon="login">login</span>
+                </button>
+            </form>
+        </div>
+    </main>
+    <!-- Decorative Elements -->
+    <div class="fixed -top-24 -left-24 w-96 h-96 bg-primary/5 dark:bg-blue-900/10 rounded-full blur-3xl -z-10"></div>
+    <div
+        class="fixed -bottom-48 -right-48 w-[32rem] h-[32rem] bg-secondary-container/20 dark:bg-slate-800/50 rounded-full blur-3xl -z-10">
+    </div>
+    <script type="module">
+        import { auth, signInWithEmailAndPassword, onAuthStateChanged } from './assets/js/firebase-config.js';
+
+        // Auto redirect if already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'pages/Home.html';
+            }
+        });
+
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                Swal.fire({ title: 'تنبيه', text: 'يرجى إدخال اسم المستخدم وكلمة المرور', icon: 'warning', confirmButtonColor: '#002068' });
+                return;
+            }
+
+            // Firebase Auth expects an email
+            const email = username.includes('@') ? username : username + '@intelligo.com';
+
+            // Show loading
+            Swal.fire({
+                title: 'جاري تسجيل الدخول...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    Swal.close();
+                    window.location.href = 'pages/Home.html';
+                })
+                .catch((error) => {
+                    let errorMessage = "بيانات الدخول غير صحيحة!";
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                        errorMessage = "اسم المستخدم أو كلمة المرور غير صحيحة.";
+                    } else if (error.code === 'auth/too-many-requests') {
+                        errorMessage = "تم حظر الحساب مؤقتاً بسبب محاولات دخول خاطئة كثيرة.";
+                    }
+                    Swal.fire({ title: 'خطأ', text: errorMessage, icon: 'error', confirmButtonColor: '#002068' });
+                    console.error(error);
+                });
+        });
+
+        const togglePasswordBtn = document.getElementById('toggle-password-btn');
+        const passwordInput = document.getElementById('password');
+        if (togglePasswordBtn && passwordInput) {
+            togglePasswordBtn.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                const icon = togglePasswordBtn.querySelector('span');
+                icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+            });
+        }
+
+    </script>
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.theme = 'dark';
+                } else {
+                    localStorage.theme = 'light';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
